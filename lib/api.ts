@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL||"https://green-garden-backend.vercel.app/api" || "http://localhost:5007/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL||"http://green-garden.arunverma.online/api"||"https://green-garden-backend.vercel.app/api" || "http://localhost:5007/api";
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
