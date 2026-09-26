@@ -70,7 +70,7 @@ export default function ReportsPage() {
   }, [activeTab, selectedYear]);
 
   const handleExportCsv = () => {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL||"https://green-garden-backend.vercel.app" || "http://localhost:5007/api";
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "https://green-garden-backend.vercel.app/api" || "http://localhost:5007/api";
     window.open(
       `${backendUrl}/reports/export-csv?type=${activeTab}&year=${selectedYear}`,
       "_blank"
