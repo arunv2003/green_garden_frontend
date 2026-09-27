@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Sidebar } from "./Sidebar";
 import { Navbar } from "./Navbar";
 
@@ -10,6 +11,24 @@ interface AppLayoutProps {
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close mobile drawer on route navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden">
@@ -20,12 +39,15 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex md:hidden">
+        <div className="fixed inset-0 z-50 flex md:hidden" role="dialog" aria-modal="true">
+          {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
           />
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-slate-900 z-10 animate-slideRight">
+          {/* Drawer Panel */}
+          <div className="relative flex flex-col w-72 max-w-[85vw] h-full bg-slate-900 z-10 shadow-2xl">
             <Sidebar onCloseMobile={() => setMobileMenuOpen(false)} />
           </div>
         </div>

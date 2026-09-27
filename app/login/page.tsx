@@ -59,8 +59,9 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-slate-800/90 backdrop-blur-xl border border-slate-700/80 rounded-3xl p-8 shadow-2xl relative z-10">
         {/* Brand Header */}
         <div className="text-center space-y-2 mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 text-white shadow-lg shadow-emerald-900/40 mb-2">
-            <Sparkles className="w-7 h-7" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl overflow-hidden shadow-lg shadow-emerald-900/40 mb-2 border border-emerald-500/30">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/favicon.svg" alt="Green Garden" className="w-full h-full object-cover" />
           </div>
           <h1 className="text-2xl font-black tracking-wider text-white">GREEN GARDEN</h1>
           <p className="text-xs text-emerald-400 font-semibold uppercase tracking-widest">
